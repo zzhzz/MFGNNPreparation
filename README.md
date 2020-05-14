@@ -1,7 +1,7 @@
 # Experiment Data Prepare
 
 ## Introduce
-This project process source code into ECFG, and formatting data to standard dataset, which could feed into [MFGNN](https://) directly..
+This project process source code into ECFG, and formatting data to standard dataset, which could feed into [MFGNN](https://github.com/zzhzz/MFGNN) directly..
 
 There are three part in this project
 * `codes datas` directory: `codes` directory for source code, and `datas` directory for extend-CFG. Three experiments' dataset are compressed and you should `unzip` first.

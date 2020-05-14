@@ -40,8 +40,7 @@ def trans_oj_ecfg():
         prob_data_list = []
         prob_dir = exp_dir + problem + '/'
         code_list = list(os.listdir(prob_dir))
-        if experiment != 'poj':
-            code_list = deduplication(prob_dir, code_list, labels=labels)
+        code_list = deduplication(prob_dir, code_list, labels=labels)
         idx = 1
         # each problem has its tokenMap
         tk_mp = {'Stmt': 0}
@@ -60,7 +59,10 @@ def trans_oj_ecfg():
                     func_result = []
                     code = paths[idx].split('/')[-1]
                     submission_name = code[:code.find('.')]
-                    label = '_'.join(submission_name.split('_')[1:])
+                    temp_lis = submission_name.split('_')[1:]
+                    if experiment == 'codeforces':
+                        temp_lis = temp_lis[:-1]
+                    label = '_'.join(temp_lis)
                     for cfg in func_list:
                         cfg_dict = {}
                         cfg_edges = cfg.edges
@@ -132,8 +134,7 @@ def trans_oj_ast():
     for problem in problem_list:
         prob_dir = exp_dir + problem + '/'
         code_list = list(os.listdir(prob_dir))
-        if experiment != 'poj':
-            code_list = deduplication(prob_dir, code_list, labels=labels)
+        code_list = deduplication(prob_dir, code_list, labels=labels)
         asts, datas = [], []
         tk_mp = {}
         gen = 0
@@ -188,15 +189,10 @@ def trans_oj_ast():
 def trans_ctx_graph():
     exp_dir = original_data_dir + '/' + experiment + '/'
     problem_list = list(os.listdir(exp_dir))
-    parser = Parser()
     experiment_save_dir = save_dir + '/' + experiment + '/'
     if not os.path.exists(experiment_save_dir):
         os.makedirs(experiment_save_dir)
     for problem in problem_list:
-        prob_dir = exp_dir + problem + '/'
-        code_list = list(os.listdir(prob_dir))
-        if experiment != 'poj':
-            code_list = deduplication(prob_dir, code_list, labels=labels)
         asts, datas = [], []
         tk_mp = {}
         gen = 0
